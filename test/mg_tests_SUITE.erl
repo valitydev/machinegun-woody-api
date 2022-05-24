@@ -39,8 +39,6 @@
 -export([machine_call_by_id/1]).
 -export([machine_id_not_found/1]).
 -export([machine_empty_id_not_found/1]).
--export([machine_set_tag/1]).
--export([machine_call_by_tag/1]).
 -export([machine_tag_not_found/1]).
 -export([machine_remove/1]).
 -export([machine_remove_by_action/1]).
@@ -121,9 +119,7 @@ groups() ->
             machine_already_exists,
             machine_id_not_found,
             machine_call_by_id,
-            machine_set_tag,
             machine_tag_not_found,
-            machine_call_by_tag,
             machine_remove,
             machine_id_not_found,
             machine_start,
@@ -404,19 +400,11 @@ machine_empty_id_not_found(C) ->
 machine_call_by_id(C) ->
     <<"nop">> = mg_automaton_client:call(automaton_options(C), {id, ?ID}, <<"nop">>).
 
--spec machine_set_tag(config()) -> _.
-machine_set_tag(C) ->
-    <<"tag">> = mg_automaton_client:call(automaton_options(C), {id, ?ID}, <<"tag">>).
-
 -spec machine_tag_not_found(config()) -> _.
 machine_tag_not_found(C) ->
     IncorrectTag = <<"incorrect_Tag">>,
     #mg_stateproc_MachineNotFound{} =
         (catch mg_automaton_client:call(automaton_options(C), {tag, IncorrectTag}, <<"nop">>)).
-
--spec machine_call_by_tag(config()) -> _.
-machine_call_by_tag(C) ->
-    <<"nop">> = mg_automaton_client:call(automaton_options(C), ?REF, <<"nop">>).
 
 -spec machine_remove(config()) -> _.
 machine_remove(C) ->
