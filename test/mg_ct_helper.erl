@@ -33,7 +33,8 @@
 
 -export([handle_beat/2]).
 
--type appname() :: atom() | {atom(), any()}.
+-type appname() :: atom().
+-type app() :: appname() | {appname(), [{atom(), _Value}]}.
 
 -type option() ::
     kafka_client_name.
@@ -43,7 +44,7 @@
 config(kafka_client_name) ->
     ?CLIENT.
 
--spec start_application(appname() | {appname(), [{atom(), _Value}]}) -> _Deps :: [appname()].
+-spec start_application(app()) -> _Deps :: [appname()].
 
 start_application(consuela) ->
     genlib_app:start_application_with(consuela, [
@@ -66,7 +67,7 @@ start_application({AppName, Env}) ->
 start_application(AppName) ->
     genlib_app:start_application(AppName).
 
--spec start_applications([appname()]) -> [_Deps :: appname()].
+-spec start_applications([app()]) -> [_Deps :: appname()].
 
 start_applications(Apps) ->
     lists:foldl(fun(App, Deps) -> Deps ++ start_application(App) end, [], Apps).
