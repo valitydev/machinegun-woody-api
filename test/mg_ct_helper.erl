@@ -33,7 +33,7 @@
 
 -export([handle_beat/2]).
 
--type appname() :: atom().
+-type appname() :: atom() | {atom(), any()}.
 
 -type option() ::
     kafka_client_name.

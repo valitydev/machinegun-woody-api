@@ -147,7 +147,7 @@ default_result(signal, _Args) ->
 default_result(call, _Args) ->
     {<<>>, {default_content(), []}, #{timer => undefined, tag => undefined}};
 default_result(repair, _Args) ->
-    {<<>>, {default_content(), []}, #{timer => undefined, tag => undefined}};
+    {ok, {<<>>, {default_content(), []}, #{timer => undefined, tag => undefined}}};
 default_result(modernize, #{event := #{body := Body}}) ->
     Body.
 
