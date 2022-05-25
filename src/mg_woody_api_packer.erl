@@ -79,11 +79,6 @@ pack(content, {Metadata, Data}) ->
 %% events and history
 pack(aux_state, AuxState) ->
     pack(content, AuxState);
-pack(aux_state_legacy, AuxState) ->
-    #mg_stateproc_Content{
-        data = Data
-    } = pack(aux_state, AuxState),
-    Data;
 pack(event_id, ID) ->
     pack(integer, ID);
 pack(event_body, Body) ->
@@ -276,8 +271,6 @@ unpack(content, #mg_stateproc_Content{format_version = FormatVersion, data = Dat
 %% events and history
 unpack(aux_state, AuxState) ->
     unpack(content, AuxState);
-unpack(aux_state_legacy, AuxStateLegacy) ->
-    unpack(content, #mg_stateproc_Content{data = AuxStateLegacy});
 unpack(event_id, ID) ->
     unpack(integer, ID);
 unpack(event_body, Body) ->
