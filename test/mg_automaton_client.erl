@@ -73,7 +73,7 @@ simple_repair(Options, ID) ->
 
 -spec simple_repair(options(), mg_core_events_machine:id(), mg_core_deadline:deadline()) -> ok.
 simple_repair(#{ns := NS} = Options, ID, Deadline) ->
-    ok = call_service(Options, 'SimpleRepair', {pack(ns, NS), pack(id, ID)}, Deadline).
+    ok = call_service(Options, 'SimpleRepair', {pack(ns, NS), pack(ref, ID)}, Deadline).
 
 -spec remove(options(), mg_core:id()) -> ok.
 remove(Options, ID) ->
@@ -81,7 +81,7 @@ remove(Options, ID) ->
 
 -spec remove(options(), mg_core:id(), mg_core_deadline:deadline()) -> ok.
 remove(#{ns := NS} = Options, ID, Deadline) ->
-    ok = call_service(Options, 'Remove', {pack(ns, NS), pack(ref, ID)}, Deadline).
+    ok = call_service(Options, 'Remove', {pack(ns, NS), pack(id, ID)}, Deadline).
 
 -spec call(options(), mg_core_events_machine:id(), mg_core_storage:opaque()) ->
     mg_core_storage:opaque().
