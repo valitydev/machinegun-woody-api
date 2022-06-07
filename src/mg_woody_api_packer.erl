@@ -63,7 +63,7 @@ pack(timer, {deadline, Deadline}) ->
     {deadline, pack(datetime, Deadline)};
 pack(timer, {timeout, Timeout}) ->
     {timeout, pack(timeout, Timeout)};
-pack(ref, {id, ID}) ->
+pack(ref, ID) ->
     {id, pack(id, ID)};
 pack(direction, Direction) ->
     Direction;
@@ -250,7 +250,7 @@ unpack(timer, {deadline, Deadline}) ->
 unpack(timer, {timeout, Timeout}) ->
     {timeout, unpack(timeout, Timeout)};
 unpack(ref, {id, ID}) ->
-    {id, unpack(id, ID)};
+    unpack(id, ID);
 unpack(direction, Direction) ->
     Direction;
 unpack(content, #mg_stateproc_Content{format_version = FormatVersion, data = Data}) ->
