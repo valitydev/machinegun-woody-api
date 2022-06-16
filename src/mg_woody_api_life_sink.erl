@@ -33,20 +33,20 @@
 
 -type machine_lifecycle_created_event() ::
     event(machine_lifecycle_created, #{
-        occured_at := timestamp_ns()
+        occurred_at := timestamp_ns()
     }).
 -type machine_lifecycle_failed_event() ::
     event(machine_lifecycle_failed, #{
-        occured_at := timestamp_ns(),
+        occurred_at := timestamp_ns(),
         exception := mg_core_utils:exception()
     }).
 -type machine_lifecycle_repaired_event() ::
     event(machine_lifecycle_repaired, #{
-        occured_at := timestamp_ns()
+        occurred_at := timestamp_ns()
     }).
 -type machine_lifecycle_removed_event() ::
     event(machine_lifecycle_removed, #{
-        occured_at := timestamp_ns()
+        occurred_at := timestamp_ns()
     }).
 
 -type event(T, D) :: {T, D}.
@@ -75,7 +75,7 @@ serialize(SourceNS, SourceID, Event) ->
 %%
 
 -spec serialize_event(mg_core:ns(), mg_core:id(), event()) -> mg_proto_lifecycle_sink_thrift:'LifecycleEvent'().
-serialize_event(SourceNS, SourceID, {_, #{occured_at := Timestamp}} = Event) ->
+serialize_event(SourceNS, SourceID, {_, #{occurred_at := Timestamp}} = Event) ->
     #mg_lifesink_LifecycleEvent{
         machine_ns = SourceNS,
         machine_id = SourceID,
@@ -123,7 +123,7 @@ serialize_machine_lifecycle_created_test() ->
     Timestamp = 1000,
     ?assertEqual(
         target_event({machine, {created, #mg_lifesink_MachineLifecycleCreatedEvent{}}}, Timestamp),
-        test_event({machine_lifecycle_created, #{occured_at => Timestamp}})
+        test_event({machine_lifecycle_created, #{occurred_at => Timestamp}})
     ).
 
 -spec serialize_machine_lifecycle_failed_test() -> _.
@@ -141,7 +141,7 @@ serialize_machine_lifecycle_failed_test() ->
                 }}},
             Timestamp
         ),
-        test_event({machine_lifecycle_failed, #{occured_at => Timestamp, exception => Exception}})
+        test_event({machine_lifecycle_failed, #{occurred_at => Timestamp, exception => Exception}})
     ).
 
 -spec serialize_machine_lifecycle_repaired_test() -> _.
@@ -155,7 +155,7 @@ serialize_machine_lifecycle_repaired_test() ->
                 }}},
             Timestamp
         ),
-        test_event({machine_lifecycle_repaired, #{occured_at => Timestamp}})
+        test_event({machine_lifecycle_repaired, #{occurred_at => Timestamp}})
     ).
 
 -spec serialize_machine_lifecycle_removed_test() -> _.
@@ -163,7 +163,7 @@ serialize_machine_lifecycle_removed_test() ->
     Timestamp = 1000,
     ?assertEqual(
         target_event({machine, {removed, #mg_lifesink_MachineLifecycleRemovedEvent{}}}, Timestamp),
-        test_event({machine_lifecycle_removed, #{occured_at => Timestamp}})
+        test_event({machine_lifecycle_removed, #{occurred_at => Timestamp}})
     ).
 
 -define(NS, <<"MyNS">>).
