@@ -20,6 +20,9 @@
 -include_lib("mg_proto/include/mg_proto_lifecycle_sink_thrift.hrl").
 
 %% API types
+
+%% This type should actually belong to machinegun_core app
+%% Since the plan is to merge this with event sink mechanics at some point its fine here for now
 -type event() ::
     machine_lifecycle_created_event()
     | machine_lifecycle_failed_event()
