@@ -190,16 +190,7 @@ target_event(EventData, Timestamp) ->
 deserialize(Data) ->
     Codec = thrift_strict_binary_codec:new(Data),
     Type = {struct, struct, {mg_proto_lifecycle_sink_thrift, 'LifecycleEvent'}},
-    case thrift_strict_binary_codec:read(Codec, Type) of
-        {ok, Thrift, Codec1} ->
-            case thrift_strict_binary_codec:close(Codec1) of
-                <<>> ->
-                    Thrift;
-                Leftovers ->
-                    erlang:error({excess_binary_data, Leftovers})
-            end;
-        {error, Reason} ->
-            erlang:error(Reason)
-    end.
+    {ok, Thrift, Codec1} = thrift_strict_binary_codec:read(Codec, Type),
+    Thrift.
 
 -endif.
