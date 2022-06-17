@@ -190,7 +190,7 @@ target_event(EventData, Timestamp) ->
 deserialize(Data) ->
     Codec = thrift_strict_binary_codec:new(Data),
     Type = {struct, struct, {mg_proto_lifecycle_sink_thrift, 'LifecycleEvent'}},
-    {ok, Thrift, Codec1} = thrift_strict_binary_codec:read(Codec, Type),
+    {ok, Thrift, _} = thrift_strict_binary_codec:read(Codec, Type),
     Thrift.
 
 -endif.
