@@ -107,7 +107,7 @@ serialize_data({machine_lifecycle_removed, _}) ->
 
 -spec exception_to_string(mg_core_utils:exception()) -> binary().
 exception_to_string(Exception) ->
-    list_to_binary(genlib_format:format_exception(Exception)).
+    iolist_to_binary(genlib_format:format_exception(Exception)).
 
 -spec serialize_timesamp(timestamp_ns()) -> mg_proto_base_thrift:'Timestamp'().
 serialize_timesamp(Timestamp) ->
@@ -139,7 +139,7 @@ serialize_machine_lifecycle_failed_test() ->
                 {status_changed, #mg_lifesink_MachineLifecycleStatusChangedEvent{
                     new_status =
                         {failed, #mg_lifesink_MachineStatusFailed{
-                            reason = list_to_binary(genlib_format:format_exception(Exception))
+                            reason = <<"throw:throw ">>
                         }}
                 }}},
             Timestamp
