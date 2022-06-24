@@ -496,8 +496,8 @@ machine_processor_error(C) ->
 
 -spec failed_machine_status(config()) -> _.
 failed_machine_status(C) ->
-    #{status := {failed, _}}
-        = mg_automaton_client:get_machine(automaton_options(C), ?ID, {undefined, undefined, forward}).
+    #{status := {failed, _}} =
+        mg_automaton_client:get_machine(automaton_options(C), ?ID, {undefined, undefined, forward}).
 
 -spec failed_machine_call(config()) -> _.
 failed_machine_call(C) ->
@@ -530,8 +530,8 @@ working_machine_repair(C) ->
 
 -spec working_machine_status(config()) -> _.
 working_machine_status(C) ->
-    #{status := working}
-        = mg_automaton_client:get_machine(automaton_options(C), ?ID, {undefined, undefined, forward}).
+    #{status := working} =
+        mg_automaton_client:get_machine(automaton_options(C), ?ID, {undefined, undefined, forward}).
 
 %%
 %% timer
