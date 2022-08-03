@@ -150,7 +150,7 @@ pack(signal, timeout) ->
 pack(signal, {init, Args}) ->
     {init, #mg_stateproc_InitSignal{arg = pack(args, Args)}};
 pack(signal, {notification, Args}) ->
-    {notification, #mg_stateproc_NotificationSignal{arguments = pack(args, Args)}};
+    {notification, #mg_stateproc_NotificationSignal{arg = pack(args, Args)}};
 pack(call_response, CallResponse) ->
     pack(opaque, CallResponse);
 pack(repair_response, RepairResponse) ->
@@ -362,7 +362,7 @@ unpack(signal, {timeout, #mg_stateproc_TimeoutSignal{}}) ->
     timeout;
 unpack(signal, {init, #mg_stateproc_InitSignal{arg = Args}}) ->
     {init, unpack(args, Args)};
-unpack(signal, {notification, #mg_stateproc_NotificationSignal{arguments = Args}}) ->
+unpack(signal, {notification, #mg_stateproc_NotificationSignal{arg = Args}}) ->
     {notification, unpack(args, Args)};
 unpack(call_response, CallResponse) ->
     unpack(opaque, CallResponse);
