@@ -184,17 +184,11 @@ event_sink_namespace_options(#{storage := Storage} = EventSinkNS) ->
     NS = <<"_event_sinks">>,
     MachinesStorage = sub_storage_options(<<"machines">>, Storage),
     EventsStorage = sub_storage_options(<<"events">>, Storage),
-    NotificationStorage = sub_storage_options(<<"notifications">>, Storage),
     EventSinkNS#{
         namespace => NS,
         pulse => pulse(),
         storage => MachinesStorage,
         events_storage => EventsStorage,
-        notification => #{
-            namespace => NS,
-            pulse => pulse(),
-            storage => NotificationStorage
-        },
         worker => worker_manager_options(EventSinkNS)
     }.
 
