@@ -329,7 +329,7 @@ mg_woody_api_config(C) ->
                 default_processing_timeout => 5000,
                 schedulers => #{
                     timers => Scheduler,
-                    notification => Scheduler#{rescan_delay => 500}
+                    notification => Scheduler
                 },
                 retries => #{
                     storage => {exponential, infinity, 1, 10},
@@ -406,6 +406,8 @@ machine_call_by_id(C) ->
 -spec machine_notification(config()) -> _.
 machine_notification(C) ->
     Options = automaton_options(C),
+    #mg_stateproc_MachineNotFound{} =
+        (catch mg_automaton_client:notify(Options, <<"nope">>, <<"hello">>)),
     #{history := InitialEvents} =
         mg_automaton_client:get_machine(Options, ?ID, {undefined, undefined, forward}),
     _NotificationID = mg_automaton_client:notify(Options, ?ID, <<"hello">>),
