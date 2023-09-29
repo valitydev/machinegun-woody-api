@@ -11,7 +11,7 @@
  {<<"crc32cer">>,{pkg,<<"crc32cer">>,<<"0.1.8">>},3},
  {<<"genlib">>,
   {git,"https://github.com/valitydev/genlib",
-       {ref,"3e1776536802739d8819351b15d54ec70568aba7"}},
+       {ref,"58a361d7d9ef6e20c35f0687ee4d113127800438"}},
   0},
  {<<"gproc">>,{pkg,<<"gproc">>,<<"0.9.0">>},1},
  {<<"hackney">>,{pkg,<<"hackney">>,<<"1.18.0">>},1},
@@ -64,7 +64,7 @@
  {<<"unicode_util_compat">>,{pkg,<<"unicode_util_compat">>,<<"0.7.0">>},2},
  {<<"woody">>,
   {git,"https://github.com/valitydev/woody_erlang",
-       {ref,"9e375d5160ead472828c04aeaaed5b7a61597829"}},
+       {ref,"96291cc069af2356aa93c3ecc65591d7013e2185"}},
   0}]}.
 [
 {pkg_hash,[
