@@ -64,7 +64,7 @@
  {<<"unicode_util_compat">>,{pkg,<<"unicode_util_compat">>,<<"0.7.0">>},2},
  {<<"woody">>,
   {git,"https://github.com/valitydev/woody_erlang",
-       {ref,"96291cc069af2356aa93c3ecc65591d7013e2185"}},
+       {ref,"5d46291a6bfcee0bae2a9346a7d927603a909249"}},
   0}]}.
 [
 {pkg_hash,[
