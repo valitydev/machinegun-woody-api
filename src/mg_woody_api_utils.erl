@@ -108,7 +108,9 @@ opaque_to_woody_context([1, RPCID]) ->
         rpc_id => opaque_to_woody_rpc_id(RPCID),
         %% FIXME
         deadline => undefined
-    }.
+    };
+opaque_to_woody_context(_Other) ->
+    woody_context:new().
 
 -spec woody_context_to_opaque(woody_context:ctx()) -> mg_core_storage:opaque().
 woody_context_to_opaque(#{rpc_id := RPCID, meta := ContextMeta}) ->
